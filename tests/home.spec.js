@@ -154,7 +154,7 @@ test("Home Buy Service", async ({ page }) => {
         facebookLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://service.iqonic.design/services/frezka-saas-website-with-laravel-backend/");
+    expect(newPageUrl).toBe("https://service.iqonic.design/services/frezka-saas-with-laravel-backend/");
 })
 
 test("Home Facebook link verify", async ({ page }) => {
