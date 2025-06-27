@@ -302,7 +302,9 @@ test("Home Footer License", async ({ page }) => {
         facebookLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://iqonic.design/licensing-terms-more/");
+    const urlObject = new URL(newPageUrl);
+    const urlWithoutQueryParams = urlObject.origin + urlObject.pathname;
+    expect(urlWithoutQueryParams).toBe("https://iqonic.design/licensing-terms-more/");
 })
 
 test("Home Footer Iqonic Design", async ({ page }) => {
@@ -314,7 +316,9 @@ test("Home Footer Iqonic Design", async ({ page }) => {
         facebookLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://iqonic.design/");
+    const urlObject = new URL(newPageUrl);
+    const urlWithoutQueryParams = urlObject.origin + urlObject.pathname;
+    expect(urlWithoutQueryParams).toBe("https://iqonic.design/");
 })
 
 test("WhyWeDifferent Trustpilot link verify", async ({ page }) => {

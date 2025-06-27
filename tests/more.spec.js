@@ -2,6 +2,26 @@ import { expect, test } from '@playwright/test';
 import { DemoCallVerify, EnvantoFrezkaVerify } from './common';
 const home_url = process.env.HOME_URL;
 
+test("Pricing Buy Now", async ({ page }) => {
+    await page.goto(home_url);
+    await page.locator("//li[@id='menu-item-8395']").click()
+    const envantofrezkaLinkLocator = page.locator("(//a[@class='ha-comparison-table__btns-item--btn elementor-repeater-item-6734a01'])[1]");
+    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
+    await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
+})
+
+test("Pricing Buy Service", async ({ page }) => {
+    await page.goto(home_url);
+    const facebookLinkLocator = page.locator("(//a[normalize-space()='Buy Service'])[1]");
+    await facebookLinkLocator.scrollIntoViewIfNeeded()
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        facebookLinkLocator.click()
+    ])
+    const newPageUrl = newPage.url();
+    expect(newPageUrl).toBe("https://service.iqonic.design/services/frezka-saas-with-laravel-backend/");
+})
+
 test("GetHelp Document", async ({ page }) => {
     await page.goto(home_url);
     await page.locator("//li[@id='menu-item-8399']").hover()
