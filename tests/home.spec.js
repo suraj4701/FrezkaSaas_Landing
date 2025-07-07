@@ -327,3 +327,10 @@ test("WhyWeDifferent Trustpilot link verify", async ({ page }) => {
     const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]");
     await TrustpilotVerify(page, trustpilotLinkLocator);
 })
+
+test("WhyWeDifferent Book Demo Call", async ({ page }) => {
+    await page.goto(home_url);
+    await page.locator("//li[@id='menu-item-8397']").click();
+    const trustpilotLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+    await DemoCallVerify(page, trustpilotLinkLocator);
+})

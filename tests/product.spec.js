@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { AdminPanelVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify, WebsiteVerify } from './common';
+import { AdminPanelVerify, DemoCallVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify, WebsiteVerify } from './common';
 const home_url = process.env.HOME_URL;
 
 test("Products SuperAdmin Trustpilot link verify", async ({ page }) => {
@@ -33,6 +33,14 @@ test("Products SuperAdmin View Demo", async ({ page }) => {
     await page.locator("//li[@id='menu-item-8394']").click()
     const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
     await AdminPanelVerify(page, trustpilotLinkLocator);
+})
+
+test("Products SuperAdmin Book Demo Call", async ({ page }) => {
+    await page.goto(home_url);
+    await page.locator("//li[@id='menu-item-8398']").hover()
+    await page.locator("//li[@id='menu-item-8394']").click()
+    const trustpilotLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+    await DemoCallVerify(page, trustpilotLinkLocator);
 })
 
 test("Products SuperAdmin Salon Website", async ({ page }) => {
@@ -82,6 +90,14 @@ test("Products AdminPanel View Demo", async ({ page }) => {
     await AdminPanelVerify(page, trustpilotLinkLocator);
 })
 
+test("Products AdminPanel Book Demo Call", async ({ page }) => {
+    await page.goto(home_url);
+    await page.locator("//li[@id='menu-item-8398']").hover()
+    await page.locator("//li[@id='menu-item-8392']").click()
+    const trustpilotLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+    await DemoCallVerify(page, trustpilotLinkLocator);
+})
+
 test("Products Website Trustpilot link verify", async ({ page }) => {
     await page.goto(home_url);
     await page.locator("//li[@id='menu-item-8398']").hover()
@@ -113,4 +129,12 @@ test("Products Website View Demo", async ({ page }) => {
     await page.locator("//li[@id='menu-item-8393']").click()
     const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
     await WebsiteVerify(page, trustpilotLinkLocator);
+})
+
+test("Products Website Book Demo Call", async ({ page }) => {
+    await page.goto(home_url);
+    await page.locator("//li[@id='menu-item-8398']").hover()
+    await page.locator("//li[@id='menu-item-8393']").click()
+    const trustpilotLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+    await DemoCallVerify(page, trustpilotLinkLocator);
 })
