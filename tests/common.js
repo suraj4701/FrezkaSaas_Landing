@@ -57,7 +57,7 @@ const DemoCallVerify = async (page, locator) => {
         locator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://tidycal.com/iqonicdesign/frezka-demo-call");
+    expect(newPageUrl).toBe("https://tidycal.com/iqonicdesign/frezka-saas-demo-call");
     return newPage;
 }
 
