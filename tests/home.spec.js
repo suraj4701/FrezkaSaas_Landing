@@ -126,7 +126,7 @@ test("Home Buy Now 3", async ({ page }) => {
 
 test("Home Book Demo Call 3", async ({ page }) => {
     await page.goto(home_url);
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[9]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
+    const trustpilotLinkLocator = page.locator("//a[normalize-space()='Talk to a Product Expert']");
     await trustpilotLinkLocator.scrollIntoViewIfNeeded();
     await DemoCallVerify(page, trustpilotLinkLocator);
 })
