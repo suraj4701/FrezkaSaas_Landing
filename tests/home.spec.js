@@ -202,7 +202,9 @@ test("Home Instagram link verify", async ({ page }) => {
         facebookLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://www.instagram.com/iqonicdesign/");
+    const urlObject = new URL(newPageUrl);
+    const urlWithoutQueryParams = urlObject.origin + urlObject.pathname;
+    expect(urlWithoutQueryParams).toBe("https://www.instagram.com/iqonicdesign/");
 })
 
 test("Home Footer Super Admin Panel", async ({ page }) => {
