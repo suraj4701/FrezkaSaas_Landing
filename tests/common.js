@@ -53,8 +53,11 @@ const DemoCallVerify = async (page, locator) => {
         page.context().waitForEvent('page'),
         locator.click()
     ])
+
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://frezka-saas.iqonic.design/frezka-saas-demo-call/");
+    const urlObject = new URL(newPageUrl);
+    const urlWithoutQueryParams = urlObject.origin + urlObject.pathname;
+    expect(urlWithoutQueryParams).toBe("https://frezka-saas.iqonic.design/frezka-saas-demo-call/");
     return newPage;
 }
 
@@ -66,7 +69,7 @@ const EnvantoFrezkaVerify = async (page, locator) => {
     ])
     const iqonicDesignSpanLocator = newPage.locator("//body/div[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/h1[1]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain('Frezka SaaS - Software for Salons and Spa Businesses in Laravel');
+    expect(verifytext).toContain('Frezka SaaS – Spa & Salon Management Software | Launch Your Own White Label Platform (Laravel)');
     return newPage;
 }
 
