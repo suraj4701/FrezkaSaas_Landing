@@ -133,14 +133,14 @@ test("Home Book Demo Call 3", async ({ page }) => {
 
 test("Home Buy Now 4", async ({ page }) => {
     await page.goto(home_url);
-    const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[10]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/a[1]");
+    const envantofrezkaLinkLocator = page.locator("//a[contains(@class,'whitespace--normal')][normalize-space()='Buy Now']");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
     await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
 })
 
 test("Home Buy Now 5", async ({ page }) => {
     await page.goto(home_url);
-    const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[11]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/a[1]");
+    const envantofrezkaLinkLocator = page.locator("//a[contains(@class,'ha-comparison-table__btns-item--btn elementor-repeater-item-6734a01')]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
     await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
 })
