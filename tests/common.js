@@ -36,6 +36,17 @@ const WebsiteVerify = async (page, locator) => {
     return newPage;
 }
 
+const AdminWebsiteVerify = async (page, locator) => {
+
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        locator.click()
+    ])
+    const newPageUrl = newPage.url();
+    expect(newPageUrl).toBe("https://apps.iqonic.design/frezka-saas/salon-admin");
+    return newPage;
+}
+
 const AdminPanelVerify = async (page, locator) => {
 
     const [newPage] = await Promise.all([
@@ -69,8 +80,21 @@ const EnvantoFrezkaVerify = async (page, locator) => {
     ])
     const iqonicDesignSpanLocator = newPage.locator("//body/div[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/h1[1]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain('Frezka SaaS – Spa & Salon Management Software | Launch Your Own White Label Platform (Laravel)');
+    expect(verifytext).toContain('Frezka Saas - White Label Spa & Salon Management Software');
     return newPage;
 }
 
-module.exports = { TrustpilotVerify, EnvantoVerify, WebsiteVerify, AdminPanelVerify, DemoCallVerify, EnvantoFrezkaVerify };
+const CommonLinkVerify = async (page, locator, link) => {
+
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        locator.click()
+    ])
+    const newPageUrl = newPage.url();
+    const urlObject = new URL(newPageUrl);
+    const urlWithoutQueryParams = urlObject.origin + urlObject.pathname;
+    expect(urlWithoutQueryParams).toBe(link);
+    return newPage;
+}
+
+module.exports = { TrustpilotVerify, EnvantoVerify, WebsiteVerify, AdminPanelVerify, DemoCallVerify, EnvantoFrezkaVerify, CommonLinkVerify, AdminWebsiteVerify };
