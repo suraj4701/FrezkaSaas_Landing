@@ -1,5 +1,5 @@
-import { expect, test } from '@playwright/test';
-import { DemoCallVerify, EnvantoFrezkaVerify } from './common';
+import { test } from '@playwright/test';
+import { CommonLinkVerify, DemoCallVerify, EnvantoFrezkaVerify } from './common';
 const home_url = process.env.HOME_URL;
 
 test("Pricing Buy Now", async ({ page }) => {
@@ -14,50 +14,31 @@ test("Pricing Buy Service", async ({ page }) => {
     await page.goto(home_url);
     const facebookLinkLocator = page.locator("(//a[normalize-space()='Buy Service'])[1]");
     await facebookLinkLocator.scrollIntoViewIfNeeded()
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        facebookLinkLocator.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://service.iqonic.design/services/frezka-saas-with-laravel-backend/");
+    const expectedLink = "https://service.iqonic.design/services/frezka-saas-with-laravel-backend/";
+    await CommonLinkVerify(page, facebookLinkLocator, expectedLink);
 })
 
 test("GetHelp Document", async ({ page }) => {
     await page.goto(home_url);
     await page.locator("//li[@id='menu-item-8399']").hover()
     const support = page.locator("//li[@id='menu-item-8400']")
-
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        support.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://documentation.iqonic.design/frezka-saas/");
+    const expectedLink = "https://documentation.iqonic.design/frezka-saas/";
+    await CommonLinkVerify(page, support, expectedLink);
 })
 
 test("GetHelp Support", async ({ page }) => {
     await page.goto(home_url);
     await page.locator("//li[@id='menu-item-8399']").hover()
     const support = page.locator("//li[@id='menu-item-8401']")
-
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        support.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://iqonic.desky.support/");
+    const expectedLink = "https://iqonic.desky.support/";
+    await CommonLinkVerify(page, support, expectedLink);
 })
 
 test("Hire Us", async ({ page }) => {
     await page.goto(home_url);
     const support = page.locator("//li[@id='menu-item-8402']")
-
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        support.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://iqonic.tech/");
+    const expectedLink = "https://iqonic.tech/";
+    await CommonLinkVerify(page, support, expectedLink);
 })
 
 test("Book Demo Call", async ({ page }) => {
