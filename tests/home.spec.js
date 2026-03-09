@@ -162,21 +162,6 @@ test("Home Buy Now 6", async ({ page }) => {
     await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
 })
 
-test("Home Buy Now 7", async ({ page }) => {
-    await page.goto(home_url);
-    const envantofrezkaLinkLocator = page.locator("//a[contains(@class,'ha-comparison-table__btns-item--btn elementor-repeater-item-6734a01')]");
-    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
-    await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
-})
-
-test("Home Buy Service", async ({ page }) => {
-    await page.goto(home_url);
-    const facebookLinkLocator = page.locator("//a[contains(text(),'Buy Service')]");
-    await facebookLinkLocator.scrollIntoViewIfNeeded()
-    const expectedLink = "https://service.iqonic.design/services/frezka-saas-with-laravel-backend/";
-    await CommonLinkVerify(page, facebookLinkLocator, expectedLink);
-})
-
 test("Home Buy Now 8", async ({ page }) => {
     await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//a[normalize-space()='Buy Frezka SaaS']");

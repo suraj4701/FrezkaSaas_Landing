@@ -12,7 +12,8 @@ test("Pricing Buy Now", async ({ page }) => {
 
 test("Pricing Buy Service", async ({ page }) => {
     await page.goto(home_url);
-    const facebookLinkLocator = page.locator("(//a[normalize-space()='Buy Service'])[1]");
+    await page.locator("//li[@id='menu-item-8395']").click()
+    const facebookLinkLocator = page.locator("//a[@class='ha-comparison-table__btns-item--btn elementor-repeater-item-54bdfe2']");
     await facebookLinkLocator.scrollIntoViewIfNeeded()
     const expectedLink = "https://service.iqonic.design/services/frezka-saas-with-laravel-backend/";
     await CommonLinkVerify(page, facebookLinkLocator, expectedLink);
